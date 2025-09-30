@@ -85,32 +85,38 @@ const SliderCard: React.FC<{ item: SliderItem }> = ({ item }) => {
 
 // Main Component
 export default function MediaCoverageSection() {
-  const sliderSettings = {
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    dots: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: { slidesToShow: 2, slidesToScroll: 1 },
+ const sliderSettings = {
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  slidesToShow: 3, // default (desktop)
+  dots: true,
+  speed: 500,
+ // default (desktop)
+  slidesToScroll: 1,
+  arrows: true,
+  responsive: [
+    {
+      breakpoint: 1024, // tablet
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
       },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false,
-          dots: true,
-          centerMode: false, // ❌ centerMode off -> layout stretch hoga
-        },
+    },
+    {
+      breakpoint: 1024, // mobile
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        centerMode: false, // ✅ remove extra space
       },
-    ],
-  };
+    },
+  ],
+};
+
 
   return (
     <section className="bg-white py-12 w-full">
@@ -123,18 +129,16 @@ export default function MediaCoverageSection() {
       </div>
 
       {/* Slider */}
-      <div className="w-full max-w-7xl mx-auto px-4">
-        <Slider {...sliderSettings}>
-          {mediaCoverageData.map((item) => (
-            <div
-              key={item.id}
-              className="!flex !h-full px-2" // ✅ force flex so height match kare
-            >
-              <SliderCard item={item} />
-            </div>
-          ))}
-        </Slider>
+     <div className="w-full max-w-7xl mx-auto px-4">
+  <Slider {...sliderSettings} className="w-full">
+    {mediaCoverageData.map((item) => (
+      <div key={item.id} className="!flex !h-full px-2 w-full">
+        <SliderCard item={item} />
       </div>
+    ))}
+  </Slider>
+</div>
+
     </section>
   );
 }

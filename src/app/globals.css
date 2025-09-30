@@ -85,3 +85,13 @@ html, body {
   object-fit: cover; /* pura screen cover karega */
   z-index: -1; /* content ke neeche rahega */
 }
+
+/* Slick ka har slide flex aur full width hoga */
+.slick-slide {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.slick-slide > div {
+  width: 100% !important;
+}
