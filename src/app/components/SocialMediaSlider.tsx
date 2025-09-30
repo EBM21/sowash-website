@@ -49,7 +49,7 @@ const SliderCard: React.FC<{ item: SliderItem }> = ({ item }) => {
       href={item.link} 
       target="_blank" 
       rel="noopener noreferrer" 
-      className="group block bg-white shadow-md rounded-lg overflow-hidden duration-300 h-full"
+      className="group block w-full bg-white shadow-md rounded-lg overflow-hidden duration-300 h-full"
     >
       {/* Image Section */}
       <div className="relative w-full aspect-video bg-gray-100">
