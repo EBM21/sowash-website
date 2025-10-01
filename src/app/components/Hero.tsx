@@ -104,7 +104,7 @@ export default function Hero() {
                 img: "/team.png",
                 title: "Experienced Team",
                 text: "We have a fleet of Highly Trained and Experienced individuals who ensure that the best value is delivered.",
-                size: 80,
+                size: 60,
               },
               {
                 img: "/products.png",
@@ -122,7 +122,7 @@ export default function Hero() {
                 img: "/energy.png",
                 title: "Energy Generation",
                 text: "After our detailed research, we are the only company that proves an increase in your power generation of up to 30%.",
-                size: 70,
+                size: 60,
               },
             ].map((card, index) => (
               <motion.div
@@ -185,7 +185,7 @@ export default function Hero() {
             words={[
               "SoWash is a one stop solution for all of your solar cleaning needs. Whether it is Residential Solar Panel Cleaning Services, Commercial Solar Panel Cleaning Services or a Solar Utility Field Cleaning, we cater to all. We provide cutting-edge cleaning equipment to give you the best possible outcome, at the best possible price",
             ]}
-            typeSpeed={40}
+            typeSpeed={60}
             deleteSpeed={0}
             delaySpeed={1500}
             cursor

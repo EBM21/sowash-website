@@ -9,17 +9,27 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // ✅ Scroll detect for hide/show navbar
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        // scrolling down → hide navbar
-        setIsVisible(false);
-      } else {
-        // scrolling up → show navbar
-        setIsVisible(true);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          if (currentScrollY > lastScrollY) {
+            // ⬇️ scrolling down
+            setIsVisible(false);
+          } else if (currentScrollY < lastScrollY) {
+            // ⬆️ scrolling up
+            setIsVisible(true);
+          }
+
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
       }
-      setLastScrollY(window.scrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -28,7 +38,6 @@ export default function Navbar() {
 
   return (
     <div className="w-full min-h-screen bg-transparent">
-      {/* 🔥 Hero Section with Video (Navbar overlays it) */}
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-transform duration-500 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
@@ -69,12 +78,12 @@ export default function Navbar() {
 
         {/* Mobile Fullscreen Menu */}
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-700 ease-in-out md:hidden ${
+          className={`fixed inset-0 z-50 flex items-center h-130 justify-center transition-all duration-700 ease-in-out md:hidden ${
             isOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
-          {/* 🔥 Extra Light Gradient + Blur */}
-          <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 via-sky-400/20 to-blue-500/20 backdrop-blur-md"></div>
+          {/* Gradient + Blur */}
+          <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 via-sky-400/20 to-blue-500/20 backdrop-blur-3xl"></div>
 
           {/* Close Button */}
           <button
@@ -133,7 +142,6 @@ function NavLink({
       className={`relative group text-white transition-colors duration-300 hover:text-green-300 ${className}`}
     >
       {children}
-      {/* Underline effect */}
       <span
         className="
           absolute left-0 -bottom-1 h-[2px] w-0
