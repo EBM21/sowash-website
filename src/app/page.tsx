@@ -14,7 +14,6 @@ export default function Home() {
       <Hero />
       <SocialMediaSlider />
       <TestimonialSliderSection/>
-      <Footer/>
 </div>
   );
 }
