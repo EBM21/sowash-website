@@ -33,24 +33,25 @@ const AboutMain = () => {
                 transition={{ duration: 1 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-lg sm:text-xl md:text-2xl font-light mb-4 text-black leading-relaxed">
-                  <Typewriter
-                    words={[
-                      "SoWash, a specialized solar panel cleaning company, is bringing an innovative change in addressing challenges relating to Solar Panel depletion and optimizing Power Generation by ensuring the effective cleaning and maintenance of solar panels in Pakistan.",
-                    ]}
-                    typeSpeed={40}
-                    deleteSpeed={0}
-                    delaySpeed={1500}
-                    cursor
-                    cursorStyle="|"
-                  />
-                </h2>
+              <h2
+              className="text-lg sm:text-lg md:text-xl font-light mb-4 text-black leading-relaxed sm:w-[80%] md:w-[70%] mx-auto text-center"
+            >
+             <Typewriter
+             words={["SoWash, a specialized solar panel cleaning company, is bringing an innovative change in addressing challenges relating to Solar Panel depletion and optimizing Power Generation by ensuring the effective cleaning and maintenance of solar panels in Pakistan.",]}
+             typeSpeed={40}
+             deleteSpeed={0}
+             delaySpeed={1500}
+             cursor
+             cursorStyle="|"
+             />
+             </h2>
+
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-4 w-full sm:w-auto bg-lime-400 hover:bg-lime-500 text-black font-serif px-6 py-3 rounded-lg transition-all duration-300"
+                  className="mt-4 w-full sm:w-auto bg-sky-500 hover:bg-sky-600 text-white p-4 cursor-pointer uppercase transition-all duration-300"
                 >
-                  Get a Quote Now!
+                  Get a quote!
                 </motion.button>
               </motion.section>
         

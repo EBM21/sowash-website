@@ -82,7 +82,7 @@ export default function Navbar({ isHome }: { isHome: boolean }) {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(true)}
-          className={`md:hidden absolute right-6 top-18 ${
+          className={`md:hidden absolute right-6 top-14 ${
             isHome ? "text-white" : "text-black"
           }`}
         >
