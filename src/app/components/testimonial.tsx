@@ -92,7 +92,7 @@ export default function TestimonialSliderSection() {
       
       {/* Testimonials Heading (Shadow Removed) */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-extrabold text-sky-400">
+        <h2 className="text-4xl font-light text-sky-400">
           Testimonials
         </h2>
         {/* Simple line, no shadow/hover effects */}

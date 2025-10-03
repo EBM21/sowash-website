@@ -64,9 +64,9 @@ export default function Hero() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="mt-4 w-full sm:w-auto bg-lime-400 hover:bg-lime-500 text-black font-serif px-6 py-3 rounded-lg transition-all duration-300"
+          className="mt-4 w-full sm:w-auto bg-sky-500 hover:bg-sky-600 text-white uppercase p-4 transition-all duration-300"
         >
-          Get a Quote Now!
+          Get a Quote!
         </motion.button>
       </motion.section>
 
