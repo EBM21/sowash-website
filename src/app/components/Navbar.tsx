@@ -8,33 +8,40 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  
+useEffect(() => {
+  let ticking = false;
 
-  useEffect(() => {
-    let ticking = false;
+  const handleScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
+        if (currentScrollY === 0) {
+          // ✅ Sirf top par visible hoga
+          setIsVisible(true);
+        } else {
+          // ❌ otherwise hide
+          setIsVisible(false);
+        }
 
-          if (currentScrollY > lastScrollY) {
-            // ⬇️ scrolling down
-            setIsVisible(false);
-          } else if (currentScrollY < lastScrollY) {
-            // ⬆️ scrolling up
-            setIsVisible(true);
-          }
+        // ✅ scroll par mobile menu close bhi ho
+        if (isOpen) {
+          setIsOpen(false);
+        }
 
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+        setLastScrollY(currentScrollY);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, [isOpen]);
+
+
 
   return (
     <div className="w-full min-h-screen bg-transparent">
@@ -47,7 +54,7 @@ export default function Navbar() {
           {/* Left Links - Desktop */}
           <div className="hidden md:flex items-center gap-12 text-sm font-light">
             <NavLink href="/">Home</NavLink>
-            <NavLink href="#">About Us</NavLink>
+            <NavLink href="/About">About Us</NavLink>
             <NavLink href="#">Services</NavLink>
           </div>
 
@@ -70,7 +77,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(true)}
-            className="md:hidden text-white absolute pt-12 right-6 top-7"
+            className="md:hidden text-white absolute pt-12 right-16 top-7"
           >
             <Menu size={28} />
           </button>
