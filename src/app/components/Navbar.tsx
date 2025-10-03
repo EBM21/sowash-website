@@ -41,7 +41,7 @@ export default function Navbar({ isHome }: { isHome: boolean }) {
         ${isHome ? "bg-transparent pt-12" : "bg-white pt-8"}
         `}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-center h-20">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-center h-20 relative">
         {/* Left Links */}
         <div className="hidden md:flex items-center gap-12 text-sm font-light">
           {navLinks.slice(0, 3).map((link) => (
@@ -79,11 +79,11 @@ export default function Navbar({ isHome }: { isHome: boolean }) {
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* ✅ Mobile Menu Button (always aligned in same row as logo) */}
         <button
           onClick={() => setIsOpen(true)}
-          className={`md:hidden absolute right-6 top-14 ${
-            isHome ? "text-white" : "text-black"
+          className={`md:hidden absolute right-6 ${
+            isHome ? "text-white top-1/2 -translate-y-1/2" : "text-black top-1/2 -translate-y-1/2"
           }`}
         >
           <Menu size={28} />
@@ -98,12 +98,12 @@ export default function Navbar({ isHome }: { isHome: boolean }) {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 via-sky-400/20 to-blue-500/20 backdrop-blur-3xl"></div>
 
-        {/* Close Button */}
+        {/* ✅ Close Button (aligned same as menu button / logo row) */}
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-6 right-6 text-white"
+          className="absolute right-6 top-6"
         >
-          <X size={36} />
+          <X size={36} className="text-white" />
         </button>
 
         {/* Mobile Nav Links */}
