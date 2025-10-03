@@ -92,7 +92,7 @@ export default function Navbar() {
 
         {/* Mobile Fullscreen Menu */}
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-700 ease-in-out md:hidden ${
+          className={`fixed inset-0 z-50 flex items-center justify-center h-130 transition-all duration-700 ease-in-out md:hidden ${
             isOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
@@ -102,7 +102,7 @@ export default function Navbar() {
           {/* Close Button */}
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-6 right-6 pt-12 text-white"
+            className="absolute top-6 right-16 pt-12 text-white"
           >
             <X size={36} />
           </button>
