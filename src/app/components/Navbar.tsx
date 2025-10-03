@@ -8,40 +8,43 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  
-useEffect(() => {
-  let ticking = false;
 
-  const handleScroll = () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
+  // ✅ Links ek jagah define
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/About" },
+    { name: "Services", href: "/Services" },
+    { name: "Contact Us", href: "/Contact" },
+    { name: "Resources", href: "/Resources" },
+    { name: "Offices", href: "/Offices" },
+  ];
 
-        if (currentScrollY === 0) {
-          // ✅ Sirf top par visible hoga
-          setIsVisible(true);
-        } else {
-          // ❌ otherwise hide
-          setIsVisible(false);
-        }
+  useEffect(() => {
+    let ticking = false;
 
-        // ✅ scroll par mobile menu close bhi ho
-        if (isOpen) {
-          setIsOpen(false);
-        }
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
 
-        setLastScrollY(currentScrollY);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  };
+          if (currentScrollY === 0) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [isOpen]);
+          if (isOpen) setIsOpen(false);
 
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
 
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isOpen]);
 
   return (
     <div className="w-full min-h-screen bg-transparent">
@@ -53,9 +56,11 @@ useEffect(() => {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-center h-20">
           {/* Left Links - Desktop */}
           <div className="hidden md:flex items-center gap-12 text-sm font-light">
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/About">About Us</NavLink>
-            <NavLink href="#">Services</NavLink>
+            {navLinks.slice(0, 3).map((link) => (
+              <NavLink key={link.name} href={link.href}>
+                {link.name}
+              </NavLink>
+            ))}
           </div>
 
           {/* Logo - Center */}
@@ -69,9 +74,11 @@ useEffect(() => {
 
           {/* Right Links - Desktop */}
           <div className="hidden md:flex items-center gap-12 text-sm font-light">
-            <NavLink href="#">Contact Us</NavLink>
-            <NavLink href="#">Resources</NavLink>
-            <NavLink href="#">Offices</NavLink>
+            {navLinks.slice(3).map((link) => (
+              <NavLink key={link.name} href={link.href}>
+                {link.name}
+              </NavLink>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -85,7 +92,7 @@ useEffect(() => {
 
         {/* Mobile Fullscreen Menu */}
         <div
-          className={`fixed inset-0 z-50 flex items-center h-130 justify-center transition-all duration-700 ease-in-out md:hidden ${
+          className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-700 ease-in-out md:hidden ${
             isOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
@@ -100,24 +107,17 @@ useEffect(() => {
             <X size={36} />
           </button>
 
-          {/* Animated Nav Links */}
+          {/* Mobile Nav Links */}
           <div className="flex flex-col items-center gap-8 text-2xl font-light text-white">
-            {[
-              "Home",
-              "About Us",
-              "Services",
-              "Contact Us",
-              "Resources",
-              "Offices",
-            ].map((item, i) => (
+            {navLinks.map((link, i) => (
               <NavLink
-                key={item}
-                href="#"
+                key={link.name}
+                href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`opacity-0 translate-y-6 animate-fadeInUp`}
                 style={{ animationDelay: `${i * 0.15 + 0.2}s` }}
               >
-                {item}
+                {link.name}
               </NavLink>
             ))}
           </div>
