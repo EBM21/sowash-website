@@ -82,7 +82,7 @@ export default function Navbar({ isHome }: { isHome: boolean }) {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(true)}
-          className={`md:hidden absolute right-6 top-6 ${
+          className={`md:hidden absolute right-6 top-18 ${
             isHome ? "text-white" : "text-black"
           }`}
         >
@@ -92,7 +92,7 @@ export default function Navbar({ isHome }: { isHome: boolean }) {
 
       {/* Mobile Fullscreen Menu */}
       <div
-        className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-700 ease-in-out md:hidden ${
+        className={`fixed inset-0 z-50 flex items-center h-130 justify-center transition-all duration-700 ease-in-out md:hidden ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >

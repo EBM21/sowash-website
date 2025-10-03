@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 
-
 export default function NavbarWrapper({
   children,
 }: {
@@ -14,23 +13,23 @@ export default function NavbarWrapper({
 
   return (
     <div className="relative">
-      <Navbar isHome={isHome}/>
+      <Navbar isHome={isHome} />
 
       {isHome ? (
         <div className="relative w-full overflow-hidden">
           {/* Background Video */}
-    <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  className="absolute inset-0 w-full md:object-fill -z-10"
->
-  <source src="/sowash-login.mp4" type="video/mp4" />
-</video>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="fixed top-0 left-0 w-full h-full object-cover -z-20"
+          >
+            <source src="/sowash-login.mp4" type="video/mp4" />
+          </video>
 
-     {/* 🔥 Black Transparent Overlay */}
-        <div className="fixed top-0 left-0 w-full h-full bg-black/50 -z-10"></div>
+          {/* 🔥 Black Transparent Overlay */}
+          <div className="fixed top-0 left-0 w-full h-full bg-black/50 -z-10"></div>
 
           {/* Hero Section */}
           <div className="relative z-10 flex items-center justify-center min-h-screen">
